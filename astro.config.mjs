@@ -5,10 +5,16 @@ import mdx from '@astrojs/mdx';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://tyd5630.github.io',
-  base: '/blog',
-  integrations: [
-    sitemap(),
-    mdx()
+  integrations: [tailwind()],
+  headers: [
+    {
+      source: '/*',
+      headers: [
+        {
+          key: 'Content-Security-Policy',
+          value: "script-src 'self' 'unsafe-inline' 'unsafe-eval';"
+        }
+      ]
+    }
   ]
 });
